@@ -1,6 +1,6 @@
 {
   "name": "@daaxar/walker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Walk through html parsed object",
   "main": "dist/index.js",
   "files": [
