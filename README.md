@@ -3,25 +3,12 @@
 Object walker for HTML parsed
 
 ## How to use it
+
 ``` javascript
 const Walker = require('@daaxar/walker');
+const Parser = require('node-html-parser');
 
-const parsed = {
-  tagName: 'section',
-  nodeType: 1,
-  childNodes: [
-    {
-      tagName: 'h1',
-      nodeType: 1,
-      childNodes: [ { nodeType: 3, rawText: 'Title', }, ],
-    },
-    {
-      tagName: 'strong',
-      nodeType: 1,
-      childNodes: [ { nodeType: 3, rawText: 'This is a strong text', }, ],
-    },
-  ],
-};
+const parsed = Parser.parse('<section><h1></h1><strong></strong></section>');
 
 const walker = Walker([
   {
