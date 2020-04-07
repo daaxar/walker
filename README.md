@@ -8,7 +8,7 @@ Object walker for HTML parsed
 const Walker = require('@daaxar/walker');
 const Parser = require('node-html-parser');
 
-const parsed = Parser.parse('<section><h1></h1><strong></strong></section>');
+const parsed = Parser.parse('<section><h1>Title</h1><strong>This is a strong text</strong></section>');
 
 const walker = Walker([
   {
