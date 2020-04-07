@@ -4,8 +4,58 @@ Object walker for HTML parsed
 
 ## How to use it
 ``` javascript
-const Walker = require('@daax/walker');
+const Walker = require('@daaxar/walker');
 
+const parsed = {
+  tagName: 'section',
+  nodeType: 1,
+  childNodes: [
+    {
+      tagName: 'h1',
+      nodeType: 1,
+      childNodes: [ { nodeType: 3, rawText: 'Title', }, ],
+    },
+    {
+      tagName: 'strong',
+      nodeType: 1,
+      childNodes: [ { nodeType: 3, rawText: 'This is a strong text', }, ],
+    },
+  ],
+};
+
+const walker = Walker([
+  {
+    condition: (node) => node.nodeType === 1 && node.tagName === 'h1',
+    action: (node, container, next) => {
+      const text = [];
+      next(node.childNodes, text);
+      container.push(`# ${text}`);
+    },
+  },
+  {
+    condition: (node) => node.nodeType === 1 && node.tagName === 'strong',
+    action: (node, container, next) => {
+      const text = [];
+      next(node.childNodes, text);
+      container.push(`**${text}**`);
+    },
+  },
+  {
+    condition: (node) => node.nodeType === 1,
+    action: (node, container, next) => next(node.childNodes),
+  },
+  {
+    condition: () => true,
+    action: (node, container) => {
+      container.push(node.rawText);
+    },
+  },
+]);
+
+const obj = walker(parsed, []);
+const md = obj.join('\n\n');
+
+console.log(md);
 ```
 
 ## Library
