@@ -1,0 +1,23 @@
+{
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        ".vscode": true,
+        "node_modules": true,
+        ".gitignore": true,
+        ".eslintignore": true,
+        ".eslintrc.js": true,
+        ".npmrc": true,
+
+        "_ignore_*": true,
+        "package-lock.json": true
+    }
+}

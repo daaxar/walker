@@ -1,0 +1,64 @@
+{
+  "name": "@daaxar/walker",
+  "version": "0.1.0",
+  "description": "Walk through html parsed object",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "coverage": "npm test -- --coverage",
+    "postcoverage": "open-cli coverage/lcov-report/index.html",
+    "lint": "eslint .",
+    "docs": "documentation readme src --section=Library",
+    "postdocs": "echo git add README.md",
+    "clean": "rimraf dist",
+    "prebuild": "npm run docs && npm run clean",
+    "build": "ncc build ./src -m -o dist",
+    "prerelease": "npm run lint && npm test && npm run build",
+    "release": "standard-version",
+    "postpublish": "git push origin master --follow-tags"
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daaxar/walker.git"
+  },
+  "keywords": [
+    "walker"
+  ],
+  "author": "npm@daax.com.ar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daaxar/walker/issues"
+  },
+  "homepage": "https://github.com/daaxar/walker#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.0",
+    "documentation": "^12.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "jest": "^25.2.4",
+    "lint-staged": "^10.1.1",
+    "open-cli": "^6.0.1",
+    "prettier": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "standard-version": "^7.1.0"
+  }
+}
